@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>¿Quieres ser mi San Valentín?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #ffe6f2 0, #ffb3c6 35%, #ff7b9c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 90%;
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.15;
+      font-size: 2.5rem;
+    }
+
+    .hearts span {
+      position: absolute;
+      animation: float 6s linear infinite;
+    }
+
+    .hearts span:nth-child(1) { top: 10%; left: 12%; }
+    .hearts span:nth-child(2) { top: 70%; left: 80%; animation-delay: 1s; }
+    .hearts span:nth-child(3) { top: 40%; left: 5%;  animation-delay: 2s; }
+    .hearts span:nth-child(4) { top: 20%; left: 75%; animation-delay: 3s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.7; }
+      50% { transform: translateY(-18px) scale(1.1); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: 0.7; }
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 0.75rem;
+      color: #333;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+      color: #555;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    #btnSi {
+      background: linear-gradient(135deg, #ff4b8b, #ff7b9c);
+      color: white;
+      box-shadow: 0 8px 18px rgba(255, 75, 139, 0.35);
+    }
+
+    #btnSi:hover {
+      box-shadow: 0 10px 22px rgba(255, 75, 139, 0.55);
+    }
+
+    #btnNo {
+      background: #eee;
+      color: #444;
+    }
+
+    #btnNo:hover {
+      background: #e2e2e2;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .dog-container {
+      margin-top: 1.5rem;
+      animation: pop 0.4s ease-out;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .dog-img {
+      max-width: 220px;
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+
+    .message {
+      font-size: 1.05rem;
+      color: #333;
+    }
+
+    .from {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hearts">
+      <span>❤️</span><span>💗</span><span>💘</span><span>💓</span>
+    </div>
+
+    <div id="pregunta">
+      <h1>Emilia, ¿quieres ser mi San Valentín? 💌</h1>
+      <p class="subtitle">
+        Responde con sinceridad… pero acuérdate que te amo mucho 😌
+      </p>
+
+      <div class="buttons">
+        <button id="btnSi">SÍ 💖</button>
+        <button id="btnNo">NO 🙃</button>
+      </div>
+    </div>
+
+    <div id="respuestaSi" class="hidden">
+      <div class="dog-container">
+        <img
+          class="dog-img"
+          src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHRmYWlic2FwazUydG1wbzVhbzE2cHdqY2lna3k1amEyMDZqcWhqZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/JIX9t2j0ZTN9S/giphy.gif"
+          alt="Gatico chistoso y feliz"
+        />
+        <p class="message">
+          ¡Yujuuu! 🎉 Ahora oficialmente eres mi San Valentín.  
+          Prometo darte muchos abrazos, risas y momentos bonitos (como este gatico).
+        </p>
+        <p class="from">
+          Con cariño,<br />
+          Esteban 💘
+        </p>
+      </div>
+    </div>
+
+    <div id="respuestaNo" class="hidden">
+      <p class="message">
+        ¿En serio pusiste que NO? 😭<br />
+        Inténtalo de nuevo… TE DARE LA ULTIMA OPORTUNIDAD GONORREA!👀
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const btnSi = document.getElementById("btnSi");
+    const btnNo = document.getElementById("btnNo");
+    const pregunta = document.getElementById("pregunta");
+    const respuestaSi = document.getElementById("respuestaSi");
+    const respuestaNo = document.getElementById("respuestaNo");
+
+    btnSi.addEventListener("click", () => {
+      pregunta.classList.add("hidden");
+      respuestaNo.classList.add("hidden");
+      respuestaSi.classList.remove("hidden");
+    });
+
+    btnNo.addEventListener("click", () => {
+      respuestaSi.classList.add("hidden");
+      respuestaNo.classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
